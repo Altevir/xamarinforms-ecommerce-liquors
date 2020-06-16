@@ -4,6 +4,7 @@ O que foi usado no desenvolvimento:
 - Padrão MVVM (sem framework)
 - PancakeView (https://github.com/sthewissen/Xamarin.Forms.PancakeView)
 - Sharpnado.Shadows (https://github.com/roubachof/Sharpnado.Shadows)
+- Embedded Fonts (https://docs.microsoft.com/en-us/xamarin/xamarin-forms/user-interface/text/fonts)
 - CollectionView
 - XamarinForms 4.6.0.847
 
