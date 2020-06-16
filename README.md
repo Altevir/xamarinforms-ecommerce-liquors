@@ -14,7 +14,7 @@ O que foi usado no desenvolvimento:
 ![liquors_android_discover](https://user-images.githubusercontent.com/11803107/84780711-46842800-afbc-11ea-86b9-b6f3668a727f.jpg)
 
 ### iOS
-![liquors_ios2](https://user-images.githubusercontent.com/11803107/84780881-82b78880-afbc-11ea-8c85-1eb6348f4024.png)
+![liquors_ios](https://user-images.githubusercontent.com/11803107/84791447-fcee0a00-afc8-11ea-8a79-1d17fa8e30cb.png)
 ![liquors_ios3](https://user-images.githubusercontent.com/11803107/84780906-8a772d00-afbc-11ea-9357-cd1b0a881a57.png)
 
 ### GIF
