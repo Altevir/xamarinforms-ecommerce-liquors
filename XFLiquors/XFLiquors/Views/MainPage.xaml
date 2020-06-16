@@ -1,0 +1,131 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="XFLiquors.MainPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:fonticons="clr-namespace:XFLiquors.Fonts"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:shadows="clr-namespace:Sharpnado.Shades;assembly=Sharpnado.Shadows"
+    NavigationPage.HasNavigationBar="False"
+    mc:Ignorable="d">
+
+    <Grid BackgroundColor="{StaticResource colorBlack}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="{OnPlatform Android='.48*', iOS='.68*'}" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="auto" />
+        </Grid.ColumnDefinitions>
+        <StackLayout
+            Grid.Row="1"
+            Grid.ColumnSpan="2"
+            Margin="35,0">
+            <Label
+                FontFamily="FontAbhayaLibreBold"
+                FontSize="70"
+                Text="{Binding Company}" />
+            <Label
+                Margin="0,-25,0,0"
+                CharacterSpacing="10"
+                FontSize="{OnPlatform Android='20',
+                                      iOS='26'}"
+                Text="Liquors" />
+            <Label
+                Margin="0,25,0,0"
+                FontSize="{OnPlatform Android='18',
+                                      iOS='20'}"
+                Text="Kentucky Scotch single &#10;malted barley." />
+        </StackLayout>
+        <StackLayout
+            Grid.RowSpan="3"
+            Grid.Column="1"
+            BackgroundColor="{StaticResource colorBlack222}"
+            WidthRequest="110" />
+        <Image
+            Grid.RowSpan="3"
+            Grid.ColumnSpan="2"
+            Aspect="AspectFit"
+            HeightRequest="{OnPlatform Android='250',
+                                       iOS='0'}"
+            HorizontalOptions="Center"
+            Opacity="0.1"
+            Source="background.png"
+            VerticalOptions="End" />
+        <Image
+            Grid.RowSpan="3"
+            Grid.ColumnSpan="2"
+            Aspect="AspectFit"
+            HeightRequest="{OnPlatform Android='350',
+                                       iOS='0'}"
+            HorizontalOptions="Start"
+            Source="background_line.png"
+            VerticalOptions="End" />
+        <Image
+            Grid.RowSpan="3"
+            Grid.ColumnSpan="2"
+            Margin="{OnPlatform Android='0,35,0,0',
+                                iOS='0'}"
+            Aspect="AspectFit"
+            HorizontalOptions="End"
+            Source="black_art.png"
+            VerticalOptions="End" />
+        <StackLayout
+            Grid.Row="2"
+            Grid.ColumnSpan="2"
+            Margin="35,0,25,35"
+            Orientation="Horizontal"
+            VerticalOptions="End">
+            <BoxView
+                BackgroundColor="{StaticResource colorOrange}"
+                CornerRadius="5"
+                HeightRequest="10"
+                VerticalOptions="Center"
+                WidthRequest="10" />
+            <BoxView
+                BackgroundColor="{StaticResource colorGray}"
+                CornerRadius="4"
+                HeightRequest="8"
+                VerticalOptions="Center"
+                WidthRequest="8" />
+            <BoxView
+                BackgroundColor="{StaticResource colorGray}"
+                CornerRadius="4"
+                HeightRequest="8"
+                VerticalOptions="Center"
+                WidthRequest="8" />
+            <shadows:Shadows
+                CornerRadius="10"
+                HorizontalOptions="EndAndExpand"
+                Shades="{shadows:SingleShade BlurRadius=50,
+                                             Offset='10,20',
+                                             Opacity=0.2,
+                                             Color={StaticResource colorOrange}}">
+                <Frame
+                    Padding="20"
+                    BackgroundColor="{StaticResource colorOrange}"
+                    CornerRadius="18"
+                    HasShadow="False"
+                    HorizontalOptions="EndAndExpand">
+                    <StackLayout Orientation="Horizontal" Spacing="10">
+                        <Label
+                            FontFamily="FontBarlowSemiBold"
+                            FontSize="Medium"
+                            Text="Get Started" />
+                        <Label
+                            FontFamily="FontFontello"
+                            FontSize="Large"
+                            Text="{x:Static fonticons:FontIcons.ArrowRight}"
+                            VerticalOptions="Center" />
+                    </StackLayout>
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding NavigateToDiscoverPageCommand}" NumberOfTapsRequired="1" />
+                    </Frame.GestureRecognizers>
+                </Frame>
+            </shadows:Shadows>
+        </StackLayout>
+    </Grid>
+</ContentPage>

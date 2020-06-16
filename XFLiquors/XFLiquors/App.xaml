@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Application
+    x:Class="XFLiquors.App"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Application.Resources>
+        <Style TargetType="Label">
+            <Setter Property="FontFamily" Value="FontBarlowRegular" />
+            <Setter Property="TextColor" Value="White" />
+        </Style>
+        <Style TargetType="Entry">
+            <Setter Property="FontFamily" Value="FontBarlowRegular" />
+        </Style>
+        <Color x:Key="colorWhite">#FFFFFF</Color>
+        <Color x:Key="colorOrange">#F7B343</Color>
+        <Color x:Key="colorGray">#5B5F62</Color>
+        <Color x:Key="colorGrayC6">#C6C8D7</Color>
+        <Color x:Key="colorBlack">#1C1D23</Color>
+        <Color x:Key="colorBlack222">#222329</Color>
+        <Color x:Key="colorBlack313">#313237</Color>
+        <Color x:Key="colorRedF5">#F5455A</Color>
+        <Color x:Key="colorOrangeD99">#D99D60</Color>
+        <Color x:Key="colorOrangeF6">#F6B343</Color>
+        <Color x:Key="colorOrangeFF">#FFCD79</Color>
+    </Application.Resources>
+</Application>

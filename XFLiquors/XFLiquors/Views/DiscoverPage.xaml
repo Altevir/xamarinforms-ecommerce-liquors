@@ -1,0 +1,428 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="XFLiquors.Views.DiscoverPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:converter="clr-namespace:XFLiquors.Converters"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:fonticons="clr-namespace:XFLiquors.Fonts"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:pancake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+    xmlns:renderers="clr-namespace:XFLiquors.Renderers"
+    xmlns:shadows="clr-namespace:Sharpnado.Shades;assembly=Sharpnado.Shadows"
+    BackgroundColor="{StaticResource colorBlack}"
+    NavigationPage.HasNavigationBar="False"
+    mc:Ignorable="d">
+
+    <Grid BackgroundColor="{StaticResource colorBlack}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="auto" />
+        </Grid.ColumnDefinitions>
+        <StackLayout
+            Grid.Column="1"
+            BackgroundColor="{StaticResource colorBlack222}"
+            VerticalOptions="FillAndExpand"
+            WidthRequest="110" />
+        <ScrollView Grid.ColumnSpan="2">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="318" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="130" />
+                    <RowDefinition Height="20" />
+                </Grid.RowDefinitions>
+                <StackLayout
+                    Grid.Row="0"
+                    Grid.ColumnSpan="2"
+                    Margin="{OnPlatform Android='30,40,0,0',
+                                        iOS='30,60,0,0'}"
+                    HorizontalOptions="FillAndExpand"
+                    Orientation="Horizontal"
+                    Spacing="20">
+                    <Image Aspect="AspectFit" Source="menu.png">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding NavigateToMainPageCommand}" NumberOfTapsRequired="1" />
+                        </Image.GestureRecognizers>
+                    </Image>
+                    <Label
+                        FontFamily="FontAbhayaLibreBold"
+                        FontSize="40"
+                        HorizontalOptions="FillAndExpand"
+                        Text="Discover" />
+                    <Image
+                        Margin="0,0,40,0"
+                        Aspect="AspectFit"
+                        HorizontalOptions="EndAndExpand"
+                        Source="bell.png"
+                        VerticalOptions="Center" />
+                </StackLayout>
+                <Frame
+                    Grid.Row="1"
+                    Grid.ColumnSpan="2"
+                    Margin="30,15,35,10"
+                    Padding="20,10,10,10"
+                    CornerRadius="10"
+                    HasShadow="False"
+                    HeightRequest="45">
+                    <renderers:CustomEntryBorderless
+                        FontSize="Small"
+                        Placeholder="search your brand..."
+                        PlaceholderColor="{StaticResource colorGrayC6}" />
+                </Frame>
+                <shadows:Shadows
+                    Grid.Row="1"
+                    Grid.ColumnSpan="2"
+                    Margin="0,4,45,0"
+                    CornerRadius="10"
+                    HorizontalOptions="End"
+                    Shades="{shadows:SingleShade BlurRadius=8,
+                                                 Offset='0,6',
+                                                 Opacity=0.7,
+                                                 Color={StaticResource colorRedF5}}">
+                    <Frame
+                        Padding="4"
+                        BackgroundColor="{StaticResource colorRedF5}"
+                        CornerRadius="10"
+                        HasShadow="False"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center"
+                        Visual="Material">
+                        <Label
+                            Padding="{OnPlatform Android='5',
+                                                 iOS='8'}"
+                            FontFamily="FontFontello"
+                            FontSize="24"
+                            Text="{x:Static fonticons:FontIcons.Search}"
+                            VerticalOptions="Center" />
+                    </Frame>
+                </shadows:Shadows>
+                <Label
+                    Grid.Row="2"
+                    Grid.ColumnSpan="2"
+                    Margin="30,20,0,0"
+                    FontSize="Small"
+                    Text="Pick your taste for weekend break."
+                    TextColor="{StaticResource colorGray}" />
+                <ScrollView
+                    Grid.Row="3"
+                    Grid.ColumnSpan="2"
+                    Margin="30,10,0,0"
+                    HorizontalScrollBarVisibility="Never"
+                    Orientation="Horizontal">
+                    <FlexLayout
+                        x:Name="listGroup"
+                        AlignItems="Start"
+                        BindableLayout.ItemsSource="{Binding Groups}"
+                        HeightRequest="50"
+                        JustifyContent="SpaceEvenly">
+                        <BindableLayout.ItemTemplate>
+                            <DataTemplate>
+                                <Frame
+                                    Margin="0,0,10,0"
+                                    Padding="12"
+                                    BackgroundColor="{Binding backGroundColor}"
+                                    BorderColor="{StaticResource colorGray}"
+                                    CornerRadius="10"
+                                    HasShadow="False"
+                                    Visual="Material">
+                                    <Label
+                                        FontSize="16"
+                                        HorizontalOptions="FillAndExpand"
+                                        Text="{Binding description}"
+                                        TextColor="{Binding textColor}" />
+                                    <Frame.Triggers>
+                                        <DataTrigger
+                                            Binding="{Binding selected}"
+                                            TargetType="Frame"
+                                            Value="True">
+                                            <Setter Property="BorderColor" Value="{StaticResource colorOrangeD99}" />
+                                        </DataTrigger>
+                                    </Frame.Triggers>
+                                    <Frame.GestureRecognizers>
+                                        <TapGestureRecognizer
+                                            Command="{Binding Path=BindingContext.SelectGroupCommand, Source={x:Reference listGroup}}"
+                                            CommandParameter="{Binding .}"
+                                            NumberOfTapsRequired="1" />
+                                    </Frame.GestureRecognizers>
+                                </Frame>
+                            </DataTemplate>
+                        </BindableLayout.ItemTemplate>
+                    </FlexLayout>
+                </ScrollView>
+                <Label
+                    Grid.Row="4"
+                    Grid.ColumnSpan="2"
+                    Margin="30,10,0,8"
+                    FontFamily="FontBarlowBold"
+                    FontSize="21"
+                    Text="Recommend Brand" />
+                <CollectionView
+                    x:Name="listProducts"
+                    Grid.Row="5"
+                    Grid.ColumnSpan="2"
+                    Margin="30,0,0,0"
+                    HorizontalScrollBarVisibility="Never"
+                    ItemsSource="{Binding Products}">
+                    <CollectionView.ItemsLayout>
+                        <LinearItemsLayout ItemSpacing="10" Orientation="Horizontal" />
+                    </CollectionView.ItemsLayout>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Frame
+                                    Padding="10,5"
+                                    BackgroundColor="{StaticResource colorBlack313}"
+                                    CornerRadius="18"
+                                    HasShadow="False"
+                                    WidthRequest="155">
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="auto" />
+                                            <RowDefinition Height="auto" />
+                                            <RowDefinition Height="40" />
+                                            <RowDefinition Height="auto" />
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="auto" />
+                                        </Grid.ColumnDefinitions>
+                                        <Image
+                                            Grid.Row="0"
+                                            Grid.ColumnSpan="2"
+                                            Margin="0,-10,0,0"
+                                            Aspect="AspectFit"
+                                            Source="{Binding image}" />
+                                        <StackLayout
+                                            Grid.Row="1"
+                                            Grid.ColumnSpan="2"
+                                            Margin="0,-25,0,0"
+                                            Orientation="Horizontal"
+                                            Spacing="2">
+                                            <Label
+                                                FontFamily="FontFontello"
+                                                FontSize="14"
+                                                Text="{x:Static fonticons:FontIcons.Star}"
+                                                TextColor="{StaticResource colorOrangeF6}"
+                                                VerticalOptions="Center" />
+                                            <Label
+                                                FontFamily="FontRobotoRegular"
+                                                FontSize="10"
+                                                Text="{Binding rating, Converter={converter:IsNumberIntConverter}}"
+                                                TextColor="{StaticResource colorOrangeF6}"
+                                                VerticalOptions="Center" />
+                                        </StackLayout>
+                                        <Label
+                                            Grid.Row="2"
+                                            Grid.ColumnSpan="2"
+                                            Margin="0,-5,0,8"
+                                            FontFamily="FontRobotoRegular"
+                                            FontSize="14"
+                                            HorizontalOptions="FillAndExpand"
+                                            LineBreakMode="WordWrap"
+                                            Text="{Binding description}" />
+                                        <StackLayout
+                                            Grid.Row="3"
+                                            Grid.Column="0"
+                                            HorizontalOptions="FillAndExpand"
+                                            Orientation="Horizontal"
+                                            VerticalOptions="Center">
+                                            <Label
+                                                FontFamily="FontRobotoRegular"
+                                                FontSize="Micro"
+                                                Text="{Binding weight, StringFormat='{0:N1}ml -'}"
+                                                TextColor="{StaticResource colorGray}" />
+                                            <Label
+                                                Margin="-2,0,0,0"
+                                                FontFamily="FontRobotoRegular"
+                                                FontSize="Micro"
+                                                Text="{Binding price, StringFormat='${0:N2}'}"
+                                                TextColor="{StaticResource colorOrangeF6}" />
+                                        </StackLayout>
+                                        <shadows:Shadows
+                                            Grid.Row="3"
+                                            Grid.Column="1"
+                                            CornerRadius="10"
+                                            Shades="{shadows:SingleShade BlurRadius=8,
+                                                                         Offset='0,6',
+                                                                         Opacity=0.6,
+                                                                         Color='#A2601E'}"
+                                            VerticalOptions="End">
+                                            <Frame
+                                                Padding="16,10"
+                                                BackgroundColor="{StaticResource colorOrangeD99}"
+                                                CornerRadius="10"
+                                                HasShadow="False"
+                                                HorizontalOptions="Center">
+                                                <Label
+                                                    FontFamily="FontFontello"
+                                                    FontSize="24"
+                                                    Text="{x:Static fonticons:FontIcons.Plus}"
+                                                    VerticalOptions="Center" />
+                                            </Frame>
+                                        </shadows:Shadows>
+                                    </Grid>
+                                    <Frame.GestureRecognizers>
+                                        <TapGestureRecognizer
+                                            Command="{Binding Path=BindingContext.NavigateToDetailPageCommand, Source={x:Reference listProducts}}"
+                                            CommandParameter="{Binding .}"
+                                            NumberOfTapsRequired="1" />
+                                    </Frame.GestureRecognizers>
+                                </Frame>
+                            </Grid>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+                <StackLayout
+                    Grid.Row="6"
+                    Grid.ColumnSpan="2"
+                    Margin="30,15,35,0"
+                    Orientation="Horizontal">
+                    <Label
+                        FontFamily="FontBarlowBold"
+                        FontSize="20"
+                        HorizontalOptions="StartAndExpand"
+                        Text="Best in Price" />
+                    <Label
+                        FontSize="14"
+                        Text="View All"
+                        TextColor="{StaticResource colorOrangeF6}"
+                        VerticalOptions="Center" />
+                </StackLayout>
+                <CollectionView
+                    Grid.Row="7"
+                    Grid.ColumnSpan="2"
+                    Margin="30,0,0,0"
+                    HorizontalScrollBarVisibility="Never"
+                    ItemsSource="{Binding BestPrices}">
+                    <CollectionView.ItemsLayout>
+                        <LinearItemsLayout ItemSpacing="10" Orientation="Horizontal" />
+                    </CollectionView.ItemsLayout>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Frame
+                                    Margin="0,14,0,0"
+                                    Padding="10"
+                                    BackgroundColor="{StaticResource colorBlack313}"
+                                    CornerRadius="18"
+                                    HasShadow="False"
+                                    WidthRequest="225">
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="*" />
+                                            <RowDefinition Height="auto" />
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="65" />
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="auto" />
+                                        </Grid.ColumnDefinitions>
+                                        <Label
+                                            Grid.Row="0"
+                                            Grid.Column="1"
+                                            Margin="0,0,0,8"
+                                            FontFamily="FontRobotoRegular"
+                                            FontSize="14"
+                                            HorizontalOptions="FillAndExpand"
+                                            LineBreakMode="WordWrap"
+                                            Text="{Binding description}" />
+                                        <Label
+                                            Grid.Row="0"
+                                            Grid.Column="2"
+                                            Margin="0,0,0,20"
+                                            FontFamily="FontRobotoRegular"
+                                            FontSize="Micro"
+                                            Text="{Binding weight, StringFormat='{0:N1}ml'}"
+                                            TextColor="{StaticResource colorGray}"
+                                            VerticalOptions="End" />
+                                        <StackLayout
+                                            Grid.Row="1"
+                                            Grid.ColumnSpan="3"
+                                            Margin="74,0,0,5"
+                                            Orientation="Horizontal"
+                                            Spacing="10"
+                                            VerticalOptions="Center">
+                                            <Label
+                                                FontFamily="FontRobotoRegular"
+                                                FontSize="Micro"
+                                                HorizontalOptions="FillAndExpand"
+                                                Text="{Binding price, StringFormat='${0:N2}'}"
+                                                TextColor="{StaticResource colorOrangeF6}"
+                                                VerticalOptions="Center" />
+                                            <Frame
+                                                Padding="8,6"
+                                                BackgroundColor="{StaticResource colorOrangeD99}"
+                                                CornerRadius="8"
+                                                HasShadow="False"
+                                                HorizontalOptions="EndAndExpand">
+                                                <StackLayout Orientation="Horizontal">
+                                                    <Label
+                                                        FontFamily="FontFontello"
+                                                        FontSize="18"
+                                                        Text="{x:Static fonticons:FontIcons.Plus}" />
+                                                    <Label
+                                                        FontFamily="FontRobotoRegular"
+                                                        FontSize="Micro"
+                                                        Text="Add to Bag"
+                                                        VerticalOptions="Center" />
+                                                </StackLayout>
+                                            </Frame>
+                                        </StackLayout>
+                                    </Grid>
+                                </Frame>
+                                <Image
+                                    Margin="-25,5,0,0"
+                                    Aspect="AspectFit"
+                                    HorizontalOptions="Start"
+                                    Source="{Binding image}"
+                                    WidthRequest="125" />
+                            </Grid>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+                <shadows:Shadows
+                    Grid.Row="7"
+                    Grid.Column="1"
+                    Margin="0,0,35,-8"
+                    CornerRadius="10"
+                    HorizontalOptions="EndAndExpand"
+                    Shades="{shadows:SingleShade BlurRadius=40,
+                                                 Offset='0,15',
+                                                 Opacity=0.3,
+                                                 Color={StaticResource colorOrange}}"
+                    VerticalOptions="End">
+                    <pancake:PancakeView
+                        Padding="18,14"
+                        BackgroundColor="{StaticResource colorOrange}"
+                        BorderColor="{StaticResource colorOrangeFF}"
+                        BorderThickness="4"
+                        CornerRadius="16"
+                        HasShadow="False"
+                        HorizontalOptions="EndAndExpand">
+                        <Grid>
+                            <Image
+                                Margin="4"
+                                Aspect="AspectFit"
+                                HeightRequest="30"
+                                Source="shopping_bag" />
+                            <BoxView
+                                Margin="0,2,0,0"
+                                BackgroundColor="{StaticResource colorWhite}"
+                                CornerRadius="5"
+                                HeightRequest="10"
+                                HorizontalOptions="End"
+                                VerticalOptions="Start"
+                                WidthRequest="10" />
+                        </Grid>
+                    </pancake:PancakeView>
+                </shadows:Shadows>
+            </Grid>
+        </ScrollView>
+    </Grid>
+</ContentPage>
