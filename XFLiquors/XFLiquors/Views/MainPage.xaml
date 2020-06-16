@@ -37,7 +37,7 @@
             <Label
                 Margin="0,25,0,0"
                 FontSize="{OnPlatform Android='18',
-                                      iOS='20'}"
+                                      iOS='18'}"
                 Text="Kentucky Scotch single &#10;malted barley." />
         </StackLayout>
         <StackLayout
@@ -49,8 +49,7 @@
             Grid.RowSpan="3"
             Grid.ColumnSpan="2"
             Aspect="AspectFit"
-            HeightRequest="{OnPlatform Android='250',
-                                       iOS='0'}"
+            HeightRequest="{OnPlatform Android='250'}"
             HorizontalOptions="Center"
             Opacity="0.1"
             Source="background.png"
@@ -59,16 +58,14 @@
             Grid.RowSpan="3"
             Grid.ColumnSpan="2"
             Aspect="AspectFit"
-            HeightRequest="{OnPlatform Android='350',
-                                       iOS='0'}"
+            HeightRequest="{OnPlatform Android='350'}"
             HorizontalOptions="Start"
             Source="background_line.png"
             VerticalOptions="End" />
         <Image
             Grid.RowSpan="3"
             Grid.ColumnSpan="2"
-            Margin="{OnPlatform Android='0,35,0,0',
-                                iOS='0'}"
+            Margin="{OnPlatform Android='0,35,0,0'}"
             Aspect="AspectFit"
             HorizontalOptions="End"
             Source="black_art.png"
